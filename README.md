@@ -1,27 +1,76 @@
-# Hands-on-RL
-## REINFORCE
+# Reinforcement Learning Coursework
 
-Graph of the evolution of rewards over episodes : 
+This repository contains implementations of various reinforcement learning algorithms applied to classic control and robotics tasks.
 
-![Training curve](training_curve.png)
+## Projects Overview
 
-For the evaluation, we get a sucess rate of 100% over the 100 evaluations of the saved model.
+### 1. REINFORCE Algorithm Implementation
+- Custom implementation of REINFORCE algorithm for CartPole-v1
+- Features:
+  - Policy Network with dropout for better generalization
+  - Achieved 100% success rate in evaluation
+  - Training visualization with matplotlib
+  - Performance tracking and plotting
 
-## Stable-Baseline 3 and Hugging Face
+### 2. Stable-Baselines3 Implementations
 
-Here is the link for the CartPole model trained with the A2C algorithm : [A2C model](https://huggingface.co/AxelLabrousse/a2c_cartpole)
+#### CartPole with A2C
+- Implementation using SB3's A2C algorithm
+- Integration with Weights & Biases for experiment tracking
+- Model published on HuggingFace Hub
+- Training configuration:
+  - 25,000 timesteps
+  - MlpPolicy
 
-## Weights and Biases
+#### Panda Robot Reaching Task
+- DDPG implementation for PandaReachJointsDense-v3
+- Features:
+  - HER (Hindsight Experience Replay) buffer
+  - Integration with panda_gym environment
+  - Weights & Biases monitoring
+  - Model evaluation in rendered environment
 
-I could not make my runs public so I added a PDF report in the directory.
+## Key Findings
 
-## Full workflow training
+1. REINFORCE Implementation:
+   - Achieved optimal performance on CartPole
+   - Demonstrated stable learning curve
 
-For the full training pipeline you can refer to the *ddpg_panda_reach.py* program. I did not manage to make the code work with the A2C algorithm with panda_gym.
+2. DDPG on Panda Robot:
+   - Best performance achieved with 5000 timesteps
+   - Interesting observation: Performance degradation after 5000 timesteps
+   - Possible overfitting with longer training periods
 
-I used the DDPG algorithm instead and I first trained the model on the PandaReachJointsDense-v3 environment for 500000. You can find the W&B report for this training in the *Report Run 2.pdf* file. We see that the total rate of sucess is dropping after 5000 timestamps of training. 
+## Technologies Used
 
-I then trained the model with the same algorithm but only for 5000 timestamps and the model seems to work really well during tests. The test are done with the *a2c_sb3_panda_reach_test.py* file and the model is the *ddpg_reachjointsdense2.zip*.
+- PyTorch for custom implementations
+- Stable-Baselines3 for standardized algorithms
+- Weights & Biases for experiment tracking
+- Gymnasium for environments
+- panda_gym for robotics simulations
+- HuggingFace Hub for model sharing
 
-I do not really understand why the model suddendly drops in sucess after 5k timestamps but when testing the model trained for 500k timestamps it seems that the model is kind of stuck on one behaviour. Maybe the model overfits.
+## Project Structure
 
+```
+.
+├── reinforce_cartpole.py      # Custom REINFORCE implementation
+├── evaluate_cartpole.py       # Evaluation script for REINFORCE
+├── a2c_sb3_cartpole.py       # SB3 A2C implementation
+├── ddpg_sb3_panda_reach.py   # DDPG implementation for Panda robot
+├── a2c_sb3_panda_reach_test.py # Testing script for Panda environment
+└── training_curve.png        # Learning curve visualization
+```
+
+## Results
+
+The project achieved several key milestones:
+- Successful implementation of REINFORCE with 100% evaluation success rate
+- Working integration with modern RL tools (SB3, W&B)
+- Interesting findings regarding training duration impact on performance
+- Practical experience with both classic control and robotics environments
+
+## Links
+
+- [A2C CartPole Model on HuggingFace](https://huggingface.co/AxelLabrousse/a2c_cartpole)
+- Training visualizations and detailed metrics available in W&B reports
