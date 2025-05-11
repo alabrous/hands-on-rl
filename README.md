@@ -1,7 +1,4 @@
 # Hands-on-RL
-
-Étudiant : Axel Labrousse
-
 ## REINFORCE
 
 Graph of the evolution of rewards over episodes : 
